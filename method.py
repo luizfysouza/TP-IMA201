@@ -9,6 +9,7 @@ from entropy import information_saliency
 from statisticalsaliency import statistical_saliency
 from entropy import normalize
 from thresholds import otsu, km
+from skimage import io as skio
 
 #Load arguments
 ap = argparse.ArgumentParser()
@@ -19,14 +20,15 @@ ap.add_argument("-f", "--fusion", type=str, default="mean", help="Metric to fuse
 ap.add_argument("-t", "--threshold", type=str, default="otsu", help = "Method to find image's threshold")
 ap.add_argument("-o", "--shift", type=float, default=0, help="Shift to the right if Otsu is selected.")
 args = vars(ap.parse_args())
-im = img_as_float(io.imread(args["image"]))
+#im = img_as_float(io.imread(args["image"]))
+im = skio.imread(args['image'])
 
 
 #Get saliency
 saliency = normalize(statistical_saliency(im, wl = args["weights"][0], wa = args["weights"][1],
                                           wb = args["weights"][2], sigma=0))
 #saliency = normalize(statistical_saliency(im, wl = 1, wa = 0,
-#                                          wb = 0, sigma=0)
+#                                          wb = 0, sigma=0))
 
 #Get entropy
 entropy = information_saliency(im, args["segments"])
@@ -48,15 +50,15 @@ else:
 #Show results
 plt.figure()
 plt.subplot(2,2,1)
-plt.imshow(im)
+plt.imshow(im, cmap='gray')
 plt.title("Original image")
 plt.subplot(2,2,2)
-plt.imshow(saliency)
+plt.imshow(saliency, cmap='gray')
 plt.title("Saliency")
 plt.subplot(2,2,3)
-plt.imshow(entropy)
+plt.imshow(entropy, cmap='gray')
 plt.title("Entropy")
 plt.subplot(2,2,4)
-plt.imshow(im_bin)
+plt.imshow(im_bin, cmap='gray')
 plt.title("Thresholded image")
 plt.show()
