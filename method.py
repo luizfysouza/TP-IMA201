@@ -10,6 +10,7 @@ from statisticalsaliency import statistical_saliency
 from entropy import normalize
 from thresholds import otsu, km
 from skimage import io as skio
+from PIL import Image
 
 #Load arguments
 ap = argparse.ArgumentParser()
@@ -50,6 +51,10 @@ elif args['threshold'] == "kmeans":
     im_bin = km(new_im, 2)
 else:
     raise ValueError("Wrong argument for fusion, use 'otsu' or 'kmeans'")
+
+#save image
+Image.fromarray(entropy).save(f"results/{args['image']}_{args['segments']}seg_entropy.png")
+Image.fromarray(im_bin).save(f"results/{args['image']}_{args['segments']}seg.png")
 
 #Show results
 plt.figure()
