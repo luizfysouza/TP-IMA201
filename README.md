@@ -8,7 +8,7 @@ Where:
 
 --image is the path of the target image.
 
---segments is the number of segments used in the SLIC algorithm. (Default 1000)
+--segments is the number of segments used in the SLIC algorithm. (Default 5000)
 
 --weights is the weight of the channels L,A and B used in the weighted average for the entropy method. (Default 1 0 0)
 

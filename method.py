@@ -14,7 +14,7 @@ from skimage import io as skio
 #Load arguments
 ap = argparse.ArgumentParser()
 ap.add_argument("-i", "--image", required = True, help = "Path to the image")
-ap.add_argument("-s", "--segments", type = int, default=1000, help = "Number of segments")
+ap.add_argument("-s", "--segments", type = int, default=5000, help = "Number of segments")
 ap.add_argument("-w", "--weights", type = float, nargs=3, default=[1, 0, 0], help = "Weights for L, A and B channels")
 ap.add_argument("-f", "--fusion", type=str, default="mean", help="Metric to fuse the 2 saliencies: max, min, or mean")
 ap.add_argument("-t", "--threshold", type=str, default="otsu", help = "Method to find image's threshold")
