@@ -36,16 +36,20 @@ entropy = information_saliency(im, args["segments"])
 #Fusion of the images
 if (args['fusion'] == "mean"):
     new_im = (entropy + saliency)/2
-if (args['fusion'] == 'max'):
-    new_im = max(entropy, saliency)
-if (args['fusion'] == 'min'):
-    new_im = min(entropy, saliency)
+elif (args['fusion'] == 'max'):
+    new_im = np.maximum(entropy, saliency)
+elif (args['fusion'] == 'min'):
+    new_im = np.mininum(entropy, saliency)
+else:
+    raise ValueError("Wrong argument for fusion, use 'mean', 'max' or 'min'")
 
 #Apply threshold methods
 if (args['threshold'] == "otsu"):
     im_bin = otsu(new_im, args['shift'])
-else:
+elif args['threshold'] == "kmeans":
     im_bin = km(new_im, 2)
+else:
+    raise ValueError("Wrong argument for fusion, use 'otsu' or 'kmeans'")
 
 #Show results
 plt.figure()
