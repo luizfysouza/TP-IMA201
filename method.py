@@ -53,7 +53,7 @@ else:
     raise ValueError("Wrong argument for fusion, use 'otsu' or 'kmeans'")
 
 #save image
-Image.fromarray(entropy).save(f"results/{args['image']}_{args['segments']}seg_entropy.png")
+#Image.fromarray(entropy).save(f"results/{args['image']}_{args['segments']}seg_entropy.png")
 Image.fromarray(im_bin).save(f"results/{args['image']}_{args['segments']}seg.png")
 
 #Show results
