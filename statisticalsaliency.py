@@ -30,4 +30,4 @@ def statistical_saliency(im, wl = 1./3, wa = 1./3, wb = 1./3, sigma = 1):
     
     saliency_mean = saliency[:,:,0]*wl + saliency[:,:,1]*wa + saliency[:,:,2]*wb
     filtered_saliency = cv.GaussianBlur(saliency_mean, (3,3), sigma)
-    return filtered_saliency
+    return 1 - filtered_saliency

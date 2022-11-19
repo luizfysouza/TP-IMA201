@@ -61,4 +61,4 @@ def information_saliency(im, n_segments = 1000, sigma = 1, wl = 1./3, wa = 1./3,
 
     entropy = superpixel_entropy_image[0]*wl + superpixel_entropy_image[1]*wa + superpixel_entropy_image[2]*wb
     entropy = np.array(entropy)
-    return entropy
+    return 1 - entropy
